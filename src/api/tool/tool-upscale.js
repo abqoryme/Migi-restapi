@@ -77,7 +77,7 @@ async function upscaleImageApi(buffer, scale = 4, faceEnhance = true) {
 }
 
 export default (app) => {
-  app.post("/tools/upscale", createApiKeyMiddleware(), upload.single("image"), async (req, res) => {
+  app.post("/tool/upscale", createApiKeyMiddleware(), upload.single("image"), async (req, res) => {
     try {
       // Validasi: Pastikan file gambar diunggah
       if (!req.file) {
