@@ -1,0 +1,27 @@
+{
+  "name": "migi-apis",
+  "version": "0.0.1",
+  "description": "Simple and easy to use API documentation",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "build": "npm install",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": ["api", "documentation", "rest", "express", "nodejs"],
+  "author": "4Bq0r1",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "chalk": "^5.3.0",
+    "axios": "^1.6.0",
+    "multer": "*",
+    "sharp": "*"
+  },
+  "engines": {
+    "node": ">=22.x"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "title": "Dashboard Informations",
+  "subtitle": "All information for services",
+  "showOnLoad": true,
+  "showInterval": 300000,
+  "sponsors": [
+    {
+      "id": "fordevs",
+      "name": "Informations",
+      "logo": "",
+      "backgroundColor": "#1a1a1a",
+      "textColor": "#ffffff",
+      "bannerImage": "/src/images/mymine.jpg",
+      "url": "https://abqory.is-a.dev/sponsorship",
+      "active": true
+    }
+  ]
+}
