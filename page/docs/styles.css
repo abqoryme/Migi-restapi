@@ -169,7 +169,7 @@ a:hover {
 }
 
 .btn-primary:disabled {
-  background: linear-gradient(135deg, #b0b5f3, #c4d9f3);
+  background: linear-gradient(135deg, #fcec03, #9e2164);
   cursor: not-allowed;
   opacity: 0.7;
   transform: none;
