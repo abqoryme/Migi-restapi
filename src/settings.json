@@ -51,8 +51,12 @@
         {
           "name": "Jadwal Sholat",
           "desc": "Islamic informations for muslim",
-          "path": "/api/islami/sholat/jadwal/1301/2025-09-16",
-          "status": "ready"
+          "path": "/api/islami/sholat/jadwal/{kota}/{tanggal}",
+          "status": "ready",
+          "params": {
+          "kota": "Masukan id kota",
+          "tanggal": "Masukan tahun-bulan-hari"
+          }
         },
         {
           "name": "Cari Kota ID Jadwal Sholat",
@@ -66,14 +70,11 @@
         {
           "name": "Cek Kota ID Jadwal Sholat",
           "desc": "Islamic informations for muslim",
-          "path": "/api/islami/sholat/kota/1301",
-          "status": "ready"
-        },
-        {
-          "name": "Semua Kota Jadwal Sholat",
-          "desc": "Islamic informations for muslim",
-          "path": "/api/islami/sholat/kota/semua",
-          "status": "ready"
+          "path": "/api/islami/sholat/kota/{id_kota}",
+          "status": "ready",
+          "params": {
+          "id_kota": "Masukan id kota berupa number"
+          }
         },
         {
           "name": "Kalender Hijriyah",
@@ -96,8 +97,11 @@
         {
           "name": "Tafsir Al-Qur'an",
           "desc": "Islamic informations for muslim",
-          "path": "/api/islami/quran/ayat/tema/1",
-          "status": "ready"
+          "path": "/api/islami/quran/ayat/tema/{id_tema}",
+          "status": "ready",
+          "params": {
+          "id_tema": "Range tema 1 - 1121"
+          }
         },
         {
           "name": "List Tafsir Al-Qur'an",
