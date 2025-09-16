@@ -40,7 +40,7 @@
       ]
     },
     {
-      "name": "Islami Qur'an",
+      "name": "Islami Quran",
       "items": [
         {
           "name": "Myquran Muslim",
@@ -55,19 +55,19 @@
           "status": "ready"
         },
         {
-          "name": "Kota ID ( Jadwal Sholat )",
+          "name": "Kota ID Jadwal Sholat",
           "desc": "Islamic informations for muslim",
           "path": "/api/islami/sholat/kota/cari/jakarta",
           "status": "ready"
         },
         {
-          "name": "Cek Kota ID ( Jadwal Sholat )",
+          "name": "Cek Kota ID Jadwal Sholat",
           "desc": "Islamic informations for muslim",
           "path": "/api/islami/sholat/kota/1301",
           "status": "ready"
         },
         {
-          "name": "Semua Kota ( Jadwal Sholat )",
+          "name": "Semua Kota Jadwal Sholat",
           "desc": "Islamic informations for muslim",
           "path": "/api/islami/sholat/kota/semua",
           "status": "ready"
@@ -91,16 +91,13 @@
           "status": "ready"
         },
         {
-          "name": "Tafsir Al-Qur'an",
+          "name": "Tafsir Al-Quran",
           "desc": "Islamic informations for muslim",
-          "path": "/api/islami/ayat/tema/{tema_id}",
-          "status": "ready",
-          "params": {
-            "tema_id": "number, contoh: 1 → Tiga Golongan Manusia dalam Menyikapi Kebenaran Al-Qur’an"
-          }
+          "path": "/api/islami/ayat/tema/1",
+          "status": "ready"
         },
         {
-          "name": "List Tafsir Al-Qur'an",
+          "name": "List Tafsir Al-Quran",
           "desc": "Islamic informations for muslim",
           "path": "/api/islami/tema/all",
           "status": "ready"
@@ -114,11 +111,8 @@
         {
           "name": "Hadits Riwayat Muslim",
           "desc": "Islamic informations for muslim",
-          "path": "/api/islami/hadits/{hadits_id}",
-          "status": "ready",
-          "params": {
-            "hadits_id": "exsample: arbain, perawi, bm, koleksi dll."
-          }
+          "path": "/api/islami/hadits",
+          "status": "ready"
         }
       ]
     },
@@ -130,7 +124,7 @@
           "desc": "Get random high-quality Blue Archive character images",
           "path": "/random/ba",
           "status": "ready"
-        },
+        }
       ]
     },
     {
