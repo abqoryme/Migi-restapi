@@ -606,13 +606,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (modeParam === "dark") {
       DOM.body.classList.add("dark-mode")
-      if (DOM.themeToggle) DOM.themeToggle.checked = true
-      localStorage.setItem("darkMode", "true")
+      if (DOM.themeToggle) DOM.themeToggle.checked = false
+      localStorage.setItem("darkMode", "false")
       showToast("Dark mode activated from URL parameter", "info")
     } else if (modeParam === "light") {
       DOM.body.classList.remove("dark-mode")
-      if (DOM.themeToggle) DOM.themeToggle.checked = false
-      localStorage.setItem("darkMode", "false")
+      if (DOM.themeToggle) DOM.themeToggle.checked = true
+      localStorage.setItem("darkMode", "true")
       showToast("Light mode activated from URL parameter", "info")
     } else {
       const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
