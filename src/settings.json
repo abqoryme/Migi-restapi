@@ -57,10 +57,10 @@
         {
           "name": "Cari Kota ID Jadwal Sholat",
           "desc": "Islamic informations for muslim",
-          "path": "/api/islami/sholat/kota/cari/{bogor}",
+          "path": "/api/islami/sholat/kota/cari/{nama_kota}",
           "status": "ready",
           "params": {
-            "teks": "Name City"
+            "nama_kota": "Masukan nama kota. contoh: bogor atau jakarta"
           }
         },
         {
