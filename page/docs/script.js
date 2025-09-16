@@ -389,7 +389,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       if (sponsor.bannerImage && (sponsor.bannerImage.startsWith("http") || sponsor.bannerImage.startsWith("/"))) {
         const bannerImg = document.createElement("img")
-        bannerImg.src = sponsor.bannerImage
+        bannerImg.src = `${sponsor.bannerImage}?v=${new Date().getTime()}`
         bannerImg.alt = `${sponsor.name} banner`
         bannerImg.className = "sponsor-banner-image"
         bannerImg.onerror = () => {
