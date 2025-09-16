@@ -40,7 +40,7 @@
       ]
     },
     {
-      "name": "Islami Quran",
+      "name": "Islami Al-Qur'an",
       "items": [
         {
           "name": "Myquran Muslim",
@@ -51,14 +51,17 @@
         {
           "name": "Jadwal Sholat",
           "desc": "Islamic informations for muslim",
-          "path": "/api/islami/sholat/jadwal",
+          "path": "/api/islami/sholat/jadwal/1301/2025-09-16",
           "status": "ready"
         },
         {
-          "name": "Kota ID Jadwal Sholat",
+          "name": "Cari Kota ID Jadwal Sholat",
           "desc": "Islamic informations for muslim",
-          "path": "/api/islami/sholat/kota/cari/jakarta",
-          "status": "ready"
+          "path": "/api/islami/sholat/kota/cari/{jakarta}",
+          "status": "ready",
+          "params": {
+            "jakarta": "Name City"
+          }
         },
         {
           "name": "Cek Kota ID Jadwal Sholat",
@@ -85,34 +88,37 @@
           "status": "ready"
         },
         {
-          "name": "Random Quotes",
+          "name": "Random Kata-kata Al-Qur'an",
           "desc": "Islamic informations for muslim",
           "path": "/api/islami/quran/ayat/random",
           "status": "ready"
         },
         {
-          "name": "Tafsir Al-Quran",
+          "name": "Tafsir Al-Qur'an",
           "desc": "Islamic informations for muslim",
-          "path": "/api/islami/ayat/tema/1",
+          "path": "/api/islami/quran/ayat/tema/1",
           "status": "ready"
         },
         {
-          "name": "List Tafsir Al-Quran",
+          "name": "List Tafsir Al-Qur'an",
           "desc": "Islamic informations for muslim",
-          "path": "/api/islami/tema/all",
+          "path": "/api/islami/quran/tema/all",
           "status": "ready"
         },
         {
           "name": "Random Hadits Riwayat",
           "desc": "Islamic informations for muslim",
-          "path": "/api/islami/arbain/random",
+          "path": "/api/islami/hadits/arbain/random",
           "status": "ready"
          },
         {
           "name": "Hadits Riwayat Muslim",
           "desc": "Islamic informations for muslim",
-          "path": "/api/islami/hadits",
-          "status": "ready"
+          "path": "/api/islami/hadits/muslim/{number}",
+          "status": "ready",
+          "params": {
+            "number": "1 sampai 4930."
+          }
         }
       ]
     },
