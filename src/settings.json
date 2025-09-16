@@ -52,10 +52,7 @@
           "name": "Jadwal Sholat",
           "desc": "Islamic informations for muslim",
           "path": "/api/islami/sholat/jadwal",
-          "status": "ready",
-          "params": {
-            "text": "exsample: 1301/2025-9-16"
-          }
+          "status": "ready"
         },
         {
           "name": "Kota ID ( Jadwal Sholat )",
@@ -96,34 +93,31 @@
         {
           "name": "Tafsir Al-Qur'an",
           "desc": "Islamic informations for muslim",
-          "path": "/api/islami/ayat/tema/1",
+          "path": "/api/islami/ayat/tema/{tema_id}",
           "status": "ready",
           "params": {
-            "text": "exsample: tema 1 yakni tentang Tiga Golongan Manusia dalam Menyikapi Kebenaran Al-Qur’an"
+            "tema_id": "number, contoh: 1 → Tiga Golongan Manusia dalam Menyikapi Kebenaran Al-Qur’an"
           }
         },
         {
           "name": "List Tafsir Al-Qur'an",
           "desc": "Islamic informations for muslim",
           "path": "/api/islami/tema/all",
-          "status": "ready",
-          "params": {
-            "text": "exsample: tema 1 yakni tentang Tiga Golongan Manusia dalam Menyikapi Kebenaran Al-Qur’an"
-          }
+          "status": "ready"
         },
         {
           "name": "Random Hadits Riwayat",
           "desc": "Islamic informations for muslim",
           "path": "/api/islami/arbain/random",
-          "status": "ready",
+          "status": "ready"
          },
         {
           "name": "Hadits Riwayat Muslim",
           "desc": "Islamic informations for muslim",
-          "path": "/api/islami/hadits/",
+          "path": "/api/islami/hadits/{hadits_id}",
           "status": "ready",
           "params": {
-            "text": "exsample: arbain, perawi, bm, koleksi dll."
+            "hadits_id": "exsample: arbain, perawi, bm, koleksi dll."
           }
         }
       ]
