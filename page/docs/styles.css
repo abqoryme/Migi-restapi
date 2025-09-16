@@ -169,7 +169,7 @@ a:hover {
 }
 
 .btn-primary:disabled {
-  background: linear-gradient(135deg, #fcec03, #9e2164);
+  background: linear-gradient(135deg, #b0b5f3, #c4d9f3);
   cursor: not-allowed;
   opacity: 0.7;
   transform: none;
@@ -1599,9 +1599,20 @@ a:hover {
   color: #8b0000 !important;
 }
 
+/* (Light Mode) */
 .status-error {
-  background-color: rgba(255, 118, 117, 0.15);
-  color: var(--error-color);
+  background-color: #5d1a1a;
+  color: #ff9494;
+  border: 1px solid #ff4242;
+  box-shadow: 0 0 8px rgba(255, 66, 66, 0.4); /* Efek bayangan merah */
+}
+
+/* (Dark Mode) */
+.dark-mode .status-error {
+  background-color: rgba(255, 82, 82, 0.15); /* bg merah transparan */
+  color: #ff5252;
+  border: 1px solid #ff5252;
+  box-shadow: 0 0 10px rgba(255, 82, 82, 0.5); /* Efek cahaya merah */
 }
 
 .status-update {
