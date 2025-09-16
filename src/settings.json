@@ -40,6 +40,95 @@
       ]
     },
     {
+      "name": "Islami Qur'an",
+      "items": [
+        {
+          "name": "Myquran Muslim",
+          "desc": "Islamic informations for muslim",
+          "path": "/api/islami/quran",
+          "status": "ready"
+        },
+        {
+          "name": "Jadwal Sholat",
+          "desc": "Islamic informations for muslim",
+          "path": "/api/islami/sholat/jadwal",
+          "status": "ready",
+          "params": {
+            "text": "exsample: 1301/2025-9-16"
+          }
+        },
+        {
+          "name": "Kota ID ( Jadwal Sholat )",
+          "desc": "Islamic informations for muslim",
+          "path": "/api/islami/sholat/kota/cari/jakarta",
+          "status": "ready"
+        },
+        {
+          "name": "Cek Kota ID ( Jadwal Sholat )",
+          "desc": "Islamic informations for muslim",
+          "path": "/api/islami/sholat/kota/1301",
+          "status": "ready"
+        },
+        {
+          "name": "Semua Kota ( Jadwal Sholat )",
+          "desc": "Islamic informations for muslim",
+          "path": "/api/islami/sholat/kota/semua",
+          "status": "ready"
+        },
+        {
+          "name": "Kalender Hijriyah",
+          "desc": "Islamic informations for muslim",
+          "path": "/api/islami/cal/hijr",
+          "status": "ready"
+        },
+        {
+          "name": "Nama Kalender Hijriyah",
+          "desc": "Islamic informations for muslim",
+          "path": "/api/islami/cal/list/months",
+          "status": "ready"
+        },
+        {
+          "name": "Random Quotes",
+          "desc": "Islamic informations for muslim",
+          "path": "/api/islami/quran/ayat/random",
+          "status": "ready"
+        },
+        {
+          "name": "Tafsir Al-Qur'an",
+          "desc": "Islamic informations for muslim",
+          "path": "/api/islami/ayat/tema/1",
+          "status": "ready",
+          "params": {
+            "text": "exsample: tema 1 yakni tentang Tiga Golongan Manusia dalam Menyikapi Kebenaran Al-Qur’an"
+          }
+        },
+        {
+          "name": "List Tafsir Al-Qur'an",
+          "desc": "Islamic informations for muslim",
+          "path": "/api/islami/tema/all",
+          "status": "ready",
+          "params": {
+            "text": "exsample: tema 1 yakni tentang Tiga Golongan Manusia dalam Menyikapi Kebenaran Al-Qur’an"
+          }
+        },
+        {
+          "name": "Random Hadits Riwayat",
+          "desc": "Islamic informations for muslim",
+          "path": "/api/islami/arbain/random",
+          "status": "ready",
+         },
+        {
+          "name": "Hadits Riwayat Muslim",
+          "desc": "Islamic informations for muslim",
+          "path": "/api/islami/hadits/",
+          "status": "ready",
+          "params": {
+            "text": "exsample: arbain, perawi, bm, koleksi dll."
+          }
+        }
+      ]
+    },
+    {
       "name": "Random Images",
       "items": [
         {
@@ -47,7 +136,7 @@
           "desc": "Get random high-quality Blue Archive character images",
           "path": "/random/ba",
           "status": "ready"
-        }
+        },
       ]
     },
     {
