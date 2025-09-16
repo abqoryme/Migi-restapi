@@ -1,14 +1,14 @@
-<p align="center"\>
-<img src="https://path/to/your/logo.png" alt="Migi API's Logo" width="120"\>
-</p\>
+\<p align="center"\>
+\<img src="https://migi-restapi.vercel.app/api/preview-image" alt="Migi API's Logo" width="120"\>
+\</p\>
 
-<h1 align="center"\>Migi API's\</h1\>
+\<h1 align="center"\>Migi API's\</h1\>
 
-<p align="center"\>
-<strong\>Modern API Documentation & Interactive Testing Interface\</strong\>
-<br\><br\>
-<a href="[https://your-live-app.vercel.app](https://www.google.com/search?q=https://your-live-app.vercel.app)"\>\<strong\>Dokumentasi Live »\</strong\>\</a\>
-<br\><br\>
+\<p align="center"\>
+\<strong\>Modern API Documentation & Interactive Testing Interface\</strong\>
+\<br\>\<br\>
+\<a href="[https://your-live-app.vercel.app](https://www.google.com/search?q=https://your-live-app.vercel.app)"\>\<strong\>Dokumentasi Live »\</strong\>\</a\>
+\<br\>\<br\>
 \<img src="[https://img.shields.io/github/license/abqoryme/Migi-restapi?style=for-the-badge](https://www.google.com/search?q=https://img.shields.io/github/license/abqoryme/Migi-restapi%3Fstyle%3Dfor-the-badge)" alt="License"\>
 \<img src="[https://img.shields.io/github/stars/abqoryme/Migi-restapi?style=for-the-badge\&logo=github](https://www.google.com/search?q=https://img.shields.io/github/stars/abqoryme/Migi-restapi%3Fstyle%3Dfor-the-badge%26logo%3Dgithub)" alt="GitHub Stars"\>
 \<img src="[https://img.shields.io/github/forks/abqoryme/Migi-restapi?style=for-the-badge\&logo=github](https://www.google.com/search?q=https://img.shields.io/github/forks/abqoryme/Migi-restapi%3Fstyle%3Dfor-the-badge%26logo%3Dgithub)" alt="GitHub Forks"\>
