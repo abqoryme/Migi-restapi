@@ -715,7 +715,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (DOM.dynamicImage) {
       if (settings.bannerImage) {
-        DOM.dynamicImage.src = settings.bannerImage
+        DOM.dynamicImage.src = `${settings.bannerImage}?v=${new Date().getTime()}`
         DOM.dynamicImage.alt = settings.name ? `${settings.name} Banner` : "API Banner"
         DOM.dynamicImage.style.display = ""
       } else {
