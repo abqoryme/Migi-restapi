@@ -5,7 +5,7 @@
   "maintenance": {
     "enabled": false
   },
-  "bannerImage": "/src/images/banner.jpg",
+  "bannerImage": "/src/images/banner.png",
   "previewImage": "/src/images/preview.png",
   "header": {
     "status": "Online"
