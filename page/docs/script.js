@@ -978,6 +978,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const setupModalForApi = (apiData) => {
     DOM.modal.label.textContent = apiData.name
     DOM.modal.desc.textContent = apiData.desc
+    
+    const pathParamsRegex = /\{([^}]+)\}/g
+    let baseEndpointPath = apiData.path.split("?")[0]
+    
     DOM.modal.content.innerHTML = ""
     DOM.modal.endpoint.textContent = `${window.location.origin}${apiData.path.split("?")[0]}`
 
@@ -1011,10 +1015,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     const shareBtn = DOM.modal.element.querySelector(".share-api-btn")
     if (shareBtn) shareBtn.style.display = "inline-block"
 
-    const paramsFromPath = new URLSearchParams(apiData.path.split("?")[1])
-    const paramKeys = Array.from(paramsFromPath.keys())
+  const updateEndpointDisplay = () => {
+    let currentPath = apiData.path.split("?")[0]
+    const pathInputs = DOM.modal.queryInputContainer.querySelectorAll("input[data-is-path-param='true']")
+    pathInputs.forEach(input => {
+        const paramName = input.dataset.param
+        const value = input.value.trim()
+        currentPath = currentPath.replace(`{${paramName}}`, value || `{${paramName}}`)
+    })
+    DOM.modal.endpoint.textContent = `${window.location.origin}${currentPath}`
+}
 
-    if (paramKeys.length > 0) {
+    const pathParams = [...baseEndpointPath.matchAll(pathParamsRegex)].map(match => match[1])
+    const queryParams = new URLSearchParams(apiData.path.split("?")[1])
+
+    // --- GANTI BLOK IF/ELSE ANDA DENGAN KODE LENGKAP DI BAWAH INI ---
+    if (pathParams.length > 0 || queryParams.size > 0 || settings.apiSettings?.requireApikey) {
       const paramContainer = document.createElement("div")
       paramContainer.className = "param-container"
 
@@ -1023,162 +1039,78 @@ document.addEventListener("DOMContentLoaded", async () => {
       formTitle.innerHTML = '<i class="fas fa-sliders-h me-2" aria-hidden="true"></i> Parameters'
       paramContainer.appendChild(formTitle)
 
-      if (settings.apiSettings?.requireApikey) {
-        const apikeyGroup = document.createElement("div")
-        apikeyGroup.className = "param-group mb-3"
+      // Fungsi bantuan untuk membuat input (menghindari duplikasi kode)
+      const createParamInput = (paramKey, isRequired, isPathParam = false) => {
+        const paramGroup = document.createElement("div");
+        paramGroup.className = "param-group mb-3";
 
-        const apikeyLabelContainer = document.createElement("div")
-        apikeyLabelContainer.className = "param-label-container"
-
-        const apikeyLabel = document.createElement("label")
-        apikeyLabel.className = "form-label"
-        apikeyLabel.textContent = "apikey"
-        apikeyLabel.htmlFor = "param-apikey"
-
-        const apikeyRequiredSpan = document.createElement("span")
-        apikeyRequiredSpan.className = "required-indicator ms-1"
-        apikeyRequiredSpan.textContent = "*"
-        apikeyLabel.appendChild(apikeyRequiredSpan)
-        apikeyLabelContainer.appendChild(apikeyLabel)
-
-        const apikeyTooltipIcon = document.createElement("i")
-        apikeyTooltipIcon.className = "fas fa-info-circle param-info ms-1"
-        apikeyTooltipIcon.setAttribute("data-bs-toggle", "tooltip")
-        apikeyTooltipIcon.setAttribute("data-bs-placement", "top")
-        apikeyTooltipIcon.title = "API key required for this endpoint"
-        apikeyLabelContainer.appendChild(apikeyTooltipIcon)
-
-        apikeyGroup.appendChild(apikeyLabelContainer)
-
-        const apikeyInputContainer = document.createElement("div")
-        apikeyInputContainer.className = "input-container"
-        const apikeyInputField = document.createElement("input")
-        apikeyInputField.type = "text"
-        apikeyInputField.className = "form-control custom-input"
-        apikeyInputField.id = "param-apikey"
-        apikeyInputField.placeholder = "Enter API key..."
-        apikeyInputField.dataset.param = "apikey"
-        apikeyInputField.required = true
-        apikeyInputField.autocomplete = "off"
-        apikeyInputField.addEventListener("input", validateModalInputs)
-        apikeyInputContainer.appendChild(apikeyInputField)
-        apikeyGroup.appendChild(apikeyInputContainer)
-        paramContainer.appendChild(apikeyGroup)
-      }
-
-      paramKeys.forEach((paramKey) => {
-        const paramGroup = document.createElement("div")
-        paramGroup.className = "param-group mb-3"
-
-        const labelContainer = document.createElement("div")
-        labelContainer.className = "param-label-container"
-
-        const label = document.createElement("label")
-        label.className = "form-label"
-        label.textContent = paramKey
-        label.htmlFor = `param-${paramKey}`
-
-        const requiredSpan = document.createElement("span")
-        requiredSpan.className = "required-indicator ms-1"
-        requiredSpan.textContent = "*"
-        label.appendChild(requiredSpan)
-        labelContainer.appendChild(label)
-
-        if (apiData.params && apiData.params[paramKey]) {
-          const tooltipIcon = document.createElement("i")
-          tooltipIcon.className = "fas fa-info-circle param-info ms-1"
-          tooltipIcon.setAttribute("data-bs-toggle", "tooltip")
-          tooltipIcon.setAttribute("data-bs-placement", "top")
-          tooltipIcon.title = apiData.params[paramKey]
-          labelContainer.appendChild(tooltipIcon)
+        const labelContainer = document.createElement("div");
+        labelContainer.className = "param-label-container";
+        const label = document.createElement("label");
+        label.className = "form-label";
+        label.textContent = paramKey;
+        label.htmlFor = `param-${paramKey}`;
+        if (isRequired) {
+          const requiredSpan = document.createElement("span");
+          requiredSpan.className = "required-indicator ms-1";
+          requiredSpan.textContent = "*";
+          label.appendChild(requiredSpan);
         }
-        paramGroup.appendChild(labelContainer)
+        labelContainer.appendChild(label);
+        
+        if (apiData.params && apiData.params[paramKey]) {
+          const tooltipIcon = document.createElement("i");
+          tooltipIcon.className = "fas fa-info-circle param-info ms-1";
+          tooltipIcon.setAttribute("data-bs-toggle", "tooltip");
+          tooltipIcon.setAttribute("data-bs-placement", "top");
+          tooltipIcon.title = apiData.params[paramKey];
+          labelContainer.appendChild(tooltipIcon);
+        }
+        paramGroup.appendChild(labelContainer);
 
-        const inputContainer = document.createElement("div")
-        inputContainer.className = "input-container"
-        const inputField = document.createElement("input")
-        inputField.type = "text"
-        inputField.className = "form-control custom-input"
-        inputField.id = `param-${paramKey}`
-        inputField.placeholder = `Enter ${paramKey}...`
-        inputField.dataset.param = paramKey
-        inputField.required = true
-        inputField.autocomplete = "off"
-        inputField.addEventListener("input", validateModalInputs)
-        inputContainer.appendChild(inputField)
-        paramGroup.appendChild(inputContainer)
-        paramContainer.appendChild(paramGroup)
-      })
+        const inputContainer = document.createElement("div");
+        inputContainer.className = "input-container";
+        const inputField = document.createElement("input");
+        inputField.type = "text";
+        inputField.className = "form-control custom-input";
+        inputField.id = `param-${paramKey}`;
+        inputField.placeholder = `Enter ${paramKey}...`;
+        inputField.dataset.param = paramKey;
+        inputField.required = isRequired;
+        if (isPathParam) {
+          inputField.dataset.isPathParam = "true";
+        }
+        inputField.autocomplete = "off";
+        inputField.addEventListener("input", () => {
+          validateModalInputs();
+          if (isPathParam) {
+            updateEndpointDisplay();
+          }
+        });
+        inputContainer.appendChild(inputField);
+        paramGroup.appendChild(inputContainer);
+        return paramGroup;
+      };
 
-      if (apiData.innerDesc) {
-        const innerDescDiv = document.createElement("div")
-        innerDescDiv.className = "inner-desc mt-3"
-        innerDescDiv.innerHTML = `<i class="fas fa-info-circle me-2" aria-hidden="true"></i> ${apiData.innerDesc.replace(/\n/g, "<br>")}`
-        paramContainer.appendChild(innerDescDiv)
+      // 1. Buat input untuk apikey jika diperlukan
+      if (settings.apiSettings?.requireApikey) {
+        paramContainer.appendChild(createParamInput("apikey", true));
       }
 
-      DOM.modal.queryInputContainer.appendChild(paramContainer)
-      DOM.modal.submitBtn.classList.remove("d-none")
-      DOM.modal.submitBtn.disabled = true
-      DOM.modal.submitBtn.innerHTML = '<span>Send</span><i class="fas fa-paper-plane ms-2" aria-hidden="true"></i>'
+      // 2. Buat input untuk setiap parameter PATH
+      pathParams.forEach(param => {
+        paramContainer.appendChild(createParamInput(param, true, true));
+      });
+      
+      // 3. Buat input untuk setiap parameter QUERY
+      queryParams.forEach((value, key) => {
+        paramContainer.appendChild(createParamInput(key, true));
+      });
+      
+      DOM.modal.queryInputContainer.appendChild(paramContainer);
+      DOM.modal.submitBtn.classList.remove("d-none");
+      initializeTooltips(DOM.modal.queryInputContainer);
 
-      initializeTooltips(DOM.modal.queryInputContainer)
-    } else if (settings.apiSettings?.requireApikey) {
-      const paramContainer = document.createElement("div")
-      paramContainer.className = "param-container"
-
-      const formTitle = document.createElement("h6")
-      formTitle.className = "param-form-title"
-      formTitle.innerHTML = '<i class="fas fa-key me-2" aria-hidden="true"></i> API Key Required'
-      paramContainer.appendChild(formTitle)
-
-      const apikeyGroup = document.createElement("div")
-      apikeyGroup.className = "param-group mb-3"
-
-      const apikeyLabelContainer = document.createElement("div")
-      apikeyLabelContainer.className = "param-label-container"
-
-      const apikeyLabel = document.createElement("label")
-      apikeyLabel.className = "form-label"
-      apikeyLabel.textContent = "apikey"
-      apikeyLabel.htmlFor = "param-apikey"
-
-      const apikeyRequiredSpan = document.createElement("span")
-      apikeyRequiredSpan.className = "required-indicator ms-1"
-      apikeyRequiredSpan.textContent = "*"
-      apikeyLabel.appendChild(apikeyRequiredSpan)
-      apikeyLabelContainer.appendChild(apikeyLabel)
-
-      const apikeyTooltipIcon = document.createElement("i")
-      apikeyTooltipIcon.className = "fas fa-info-circle param-info ms-1"
-      apikeyTooltipIcon.setAttribute("data-bs-toggle", "tooltip")
-      apikeyTooltipIcon.setAttribute("data-bs-placement", "top")
-      apikeyTooltipIcon.title = "API key required for this endpoint"
-      apikeyLabelContainer.appendChild(apikeyTooltipIcon)
-
-      apikeyGroup.appendChild(apikeyLabelContainer)
-
-      const apikeyInputContainer = document.createElement("div")
-      apikeyInputContainer.className = "input-container"
-      const apikeyInputField = document.createElement("input")
-      apikeyInputField.type = "text"
-      apikeyInputField.className = "form-control custom-input"
-      apikeyInputField.id = "param-apikey"
-      apikeyInputField.placeholder = "Enter API key..."
-      apikeyInputField.dataset.param = "apikey"
-      apikeyInputField.required = true
-      apikeyInputField.autocomplete = "off"
-      apikeyInputField.addEventListener("input", validateModalInputs)
-      apikeyInputContainer.appendChild(apikeyInputField)
-      apikeyGroup.appendChild(apikeyInputContainer)
-      paramContainer.appendChild(apikeyGroup)
-
-      DOM.modal.queryInputContainer.appendChild(paramContainer)
-      DOM.modal.submitBtn.classList.remove("d-none")
-      DOM.modal.submitBtn.disabled = true
-      DOM.modal.submitBtn.innerHTML = '<span>Send</span><i class="fas fa-paper-plane ms-2" aria-hidden="true"></i>'
-
-      initializeTooltips(DOM.modal.queryInputContainer)
     } else {
       handleApiRequest(`${window.location.origin}${apiData.path}`, apiData.name)
     }
@@ -1204,18 +1136,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!currentApiData) return
 
     const inputs = DOM.modal.queryInputContainer.querySelectorAll("input")
-    const newParams = new URLSearchParams()
+    const queryParams = new URLSearchParams()
+    let finalPath = currentApiData.path.split("?")[0]
     let isValid = true
 
     inputs.forEach((input) => {
-      if (input.required && !input.value.trim()) {
+        const value = input.value.trim()
+      if (input.required && !value) {
         isValid = false
         input.classList.add("is-invalid")
         input.parentElement.classList.add("shake-animation")
         setTimeout(() => input.parentElement.classList.remove("shake-animation"), 500)
       } else {
-        input.classList.remove("is-invalid")
-        if (input.value.trim()) newParams.append(input.dataset.param, input.value.trim())
+     input.classList.remove("is-invalid")
+     if (value) {
+     if (input.dataset.isPathParam) {
+     finalPath = finalPath.replace(`{${input.dataset.param}}`, value)
+      } else {
+      queryParams.append(input.dataset.param, value)
+          }
+        }
       }
     })
 
@@ -1240,10 +1180,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     DOM.modal.submitBtn.innerHTML =
       '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Processing...'
 
-    const apiUrlWithParams = `${window.location.origin}${currentApiData.path.split("?")[0]}?${newParams.toString()}`
-    DOM.modal.endpoint.textContent = apiUrlWithParams
-
-    await handleApiRequest(apiUrlWithParams, currentApiData.name)
+    const queryString = queryParams.toString()
+    const finalApiUrl = `${window.location.origin}${finalPath}${queryString ? `?${queryString}` : ""}`
+    DOM.modal.endpoint.textContent = finalApiUrl
+    
+    await handleApiRequest(finalApiUrl, currentApiData.name)
   }
 
   const handleApiRequest = async (apiUrl, apiName) => {
