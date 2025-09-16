@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://migi-restapi.vercel.app/api/preview-image" alt="Migi API's Logo" width="120">
+<img src="https://migi-restapi.vercel.app/api/preview-image" alt="Migi API's Logo" width="1200">
 </p>
 
 <h1 align="center">Migi API's</h1>
