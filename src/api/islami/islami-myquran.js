@@ -4,8 +4,17 @@ import { createApiKeyMiddleware } from "../../middleware/apikey.js";
 const apiUrl = "api.myquran.com/v2";
 
 export default (app) => {
-  // :feature akan menangkap kata setelah /api/islami/ (misal: "quran", "sholat", "tafsir" dll.)
+  // :feature akan menangkap kata setelah /api/islami/ (misal: "quran", "sholat", "cal" dll.)
   // :subpath* akan menangkap SEMUA sisa URL setelahnya
+  app.all("/api/islami")
+        if (!text) {
+        return res.status(400).json({
+          status: false,
+          error: "Missing required parameter",
+          message: "The 'text' parameter is required",
+        })
+      }
+  
   app.all("/api/islami/:feature*", createApiKeyMiddleware(), async (req, res) => {
     const feature = req.params.feature;
     const subpath = req.params[0] || ''; 
